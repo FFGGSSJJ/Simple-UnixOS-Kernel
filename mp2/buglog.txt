@@ -1,0 +1,102 @@
+#### Bug1
+
+Problem: The first bug occurred when I tried to set the split screen by changing the value in Line Compare field. 
+As the status bar's height is 18, the supposed line compare address should be 200 - 18 = 182 = 0xB6. 
+However, when I change the line compare register's value to 0xB618, the split screen is not what I expected. 
+
+Solution: This bug is fixed by setting the line compare address as (200-18)*2-1, which is 0x16B. 
+I have no idea why it should be like this.
+
+
+
+#### Bug2
+
+Problem: The next bug occurred when I deal with display status bar onto the screen. 
+I simply fill the status bar buffer with a color to test if it will show on screen. After I copy the status bar buffer
+into the video memory, the status bar appears on screen with the color I set at initialization. However, if I start to move the 
+player, the bar will show the mazegame instead of the color. 
+
+Solution: It takes me long time to fix this bug since I did not fully understand the double buffer method at first. 
+The split screen will read the video memory from address 0x0000 according to the VGA documentation, it is not enough to just
+copy the data into video memory start from 0x0000 because the top window also read the first buffer in video memory, which starts 
+from 0x0000. I modify the values of 'target_img' from 0x0000/0x4000 to 0x05DC/0x45DC to make enough space in video memory for 
+the status bar.
+
+
+
+#### Bug3
+
+Problem: The next bug occurred when I tried to display text on the status bar using the function 'copy_to_buffer' and 'show_bar'.
+It is a really tricky and annoying bug. When I convert the text in 'char* text' according to the 'fond_data' provided and stored the 
+converted value into video memory, nothing appears in the status bar. The bar is filled with black, which is definitely wrong. 
+
+Solution: It takes me another long time to figure out the problem. There is a mistake in the function 'copy_to_buffer', when I 
+check each bit in the character. In the if statement 'if (font_data[character][row] & (bitmap >> col))', I applied '== 1' at first.
+
+
+
+#### Bug4
+
+Problem: The last troublesome bug is the fruit disappearance. The fruit will not disappear if it is generated at a corner with only
+one way out. 
+
+Solution: This bug occurs because the screen does not redraw after the player meet that fruit. I simply change the code in 'rtc_thread'
+to force the screen to refresh.
+
+
+
+#### Bugs In MP2 Checkpoint2
+
+
+
+#### Bug5
+_______
+Problem: The first bug occurred when I was implementing the floating text when the player eats a fruit. I correctly 
+set up the block used to show the fruit text, but when I tried to write font on it, the floating text just shows 
+garbage and meaning less symbols. 
+_______
+Solution: I figured it out by checking the buffer I constructed to store the content of the floating text. I simply modified 
+the function and buffer I implemented for status bar in checkpoint1, the problem falls on the point that the status bar buffer
+has 4 planes and will be directly stored into the video memory while the floating text buffer I implemented will not directly 
+stored into the video memory, it will first go into the build buffer. Hence, there is no need for me to construct 4 plane in this 
+buffer. 
+
+
+#### Bug6
+_______
+Problem: The second bug occurred when I tried to make the floating text stays for a while but failed. It only appears for a really short
+time even if I had added a counter for it.
+_______
+Solution: I figured it out by checking the code I added in the rtc_thread(). I found out that the problem falls on the counter as 
+it will be reset in the next loop instead of when the player eats next fruit since it is declared in the loop. I simply put the declaration
+outside. 
+
+
+
+#### Bug7
+_______
+Problem: When I was implementing the tux driver, I did not set spin_lock for the button interrupt at first, which resulted in a 
+situation that my driver can only get a button response by pressing the button several times. It occurred because the user program  
+is much faster than the tux driver and the button failed to get the driver working for it. 
+_______
+Solution: I simply added spin_lock when the driver tries to execute processes which make sure the button can get the lock 
+in time.
+
+
+
+#### Bug8
+_______
+Problem: This bug occurred when I was setting the LED on the tux. I found that I failed to shut down the LED3 by setting the value of
+LED3 to 0x00. It is a really tricky bug. The function I implemented for the led_set is almost correct as it can display the value and decimal 
+point correctly and there is no reason for it to fail to shut down the LED. 
+_______
+Solution: After checking the code several times, I found that the problem falls on the 'if statement'.
+
+
+
+
+
+
+
+
+There are some small bugs that resulted from a typo or calculation mistake.

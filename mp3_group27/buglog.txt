@@ -1,0 +1,150 @@
+Buglog
+
+Group #: 27
+
+MP 3.1
+
+1. 
+Location:
+	student-distrib/i8259.c: i8259_init()
+Bug Description:
+	The program can not process a loop longer than some threshold. If such a loop happens, there will be "Watchdog has expired" error.
+DeBug:
+	We gradually comment the initialize code, and when we comment the i8259_init() the bug is solved.
+	The problem is that we diden't mask all the interrupts using the master/slave_mask.
+	To solve it, add:
+		master_mask = 0xFF;
+		slave_mask = 0xFF;
+
+2.
+Location:
+	student-distrib/keyboard.c: keyboard_handler()
+Bug Description:
+	When press a key and then release it on the keyboard, instead of output the key, it will output the key together with another character.
+DeBug:
+	We analysised the output of the keyboard and find that only when we release the key will it output an unwanted character. And then we realized that a signal will also be passed when we release a key. Thus, we checked the scancode table carefully and found that the difference between the press signal and the release signal is 0x80. Then the solution is obvious.
+	To solve it, add:
+		if(scancode > NUM_VEC) break;
+
+3.
+Location:
+	student-distrib
+Bug Description:
+	After adding asm_linkage.h, the project fail to make because of multiple definition of some variables
+DeBug:
+	A tricky bug. We find the problem by checking the dependence relations between each file. The problem is solved by moving some definitions in 
+	keyboard.h to keyboard.c.
+
+4.
+Location:
+	student-distrib/tests.c
+Bug Description:
+	After adding the rtc_test function and rtc_switch, we found that the rtc fails to display correctly. It shows nothing when rtc_test() is called.
+DeBug:
+	We check how clear() and printf() work in lib.c. The problem falls on that when we call clear() to clean the screen, the cursor is not put into the start
+	of the screen. The bug is solved by adding set_cursor(0,0) after clear().
+
+
+MP 3.2
+
+5.
+Location:
+	student-distrib/filesystem.c
+Bug Description:
+	After implementing the function read_data(), we found it failed to read the data out correctly and nothing shows on the screen when we call 
+	it. There is no page fault exception.
+DeBug:
+	The problem falls on the point when we try to locate the first data block in the file system block. We convert inode pointer (inode_struct_t*) wrongly 		into data pointer (uint8_t*).
+
+6.
+Location:
+	student-distrib/lib.c
+Bug Description:
+	The cursor don't move when we input characters.
+DeBug:
+	Forgot to enable cursor and the parameter we use are not correct. The problems are solved when we updated the location of cursor and read documents on Wiki carefully and set the parameters correctly.
+
+
+7.
+Location:
+	student-distrib/lib.c
+Bug Description:
+	Page Fault occurs when we try to print '\n' on the screen.
+DeBug:
+	This bug occurs because we want to keep the history of terminal in the memory. However, we did not allocate memory to store
+	this and the program try to access memory not allocated. We simply delete the code to store the terminal history.
+
+
+MP 3.3
+
+8.
+Location:
+	system_call_asm.S
+Bug Description:
+	At the end of each function, there raises a general protection fault
+DeBug:
+	We check the stack and find that we didn't return to correct place. And we locate the bug to:
+
+	execute_ret:
+    popl    %edi
+    popl    %esi
+    popl    %ebx
+    leave
+    ret
+
+	here we shouldn't use leave because it changes esp number, we change it to
+
+	popl %esp
+
+9.
+Location:
+	rtc.c:rtc_read
+Bug Description:
+	When executing pingpong, the program stuck after printing the first a
+DeBug:
+	We find that the IF is off at the stage of rtc calling. So the rtc interrupt cannot happen.
+	To solve it, add a sti() at the start of rtc_read
+
+
+
+
+MP 3.4
+
+
+
+10.
+Location:
+	system_call.c: close
+Bug Description:
+	When trying to close a file, the Page Fault exception occurs
+DeBug:
+	When we want to close the file and clean the file descriptor in the pcb, we initialize the operation pointers in NULL
+	before we call the close the function, which results in page fault by referencing to the NULL.
+
+
+11.
+Location:
+	system_call.c: read
+Bug Description:
+	When we run cat XXX, the output is repeated strings.
+DeBug:
+	We does not correctly the position in pcb for file read and directory read.
+
+
+MP 3.5
+
+12.
+Location:
+	schedule_asm.S
+Bug Description:
+	Page fault happens when doing scheduling.
+DeBug:
+	Forget to popl saved registers before calling ret. The return address
+is wrong.
+
+13.
+Description:
+	When more than one terminal running pingpong, the program seems to be
+running for sometime, then it stops, and then continue running.
+DeBug:
+	Use virtual rtc, each terminal has one rtc_read flag.

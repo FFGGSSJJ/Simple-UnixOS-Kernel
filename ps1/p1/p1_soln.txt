@@ -1,0 +1,16 @@
+answer 1
+p/x test
+
+answer 2
+x/2h $esp
+
+answer 3
+info reg
+
+answer 4
+break ece.c:391
+
+answer 5
+gdb vmlinux
+target remote 10.0.2.2:1234.
+continue
