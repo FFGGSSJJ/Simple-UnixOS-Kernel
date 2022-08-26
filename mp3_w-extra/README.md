@@ -1,10 +1,10 @@
-### Xunil
+## Xunil
 
 The kernel we designed is named as `Xunil`, which is just a reversion of `Linux`. 
 
 All four members in this team contribute to this kernel.
 
-### Project Folder Structure
+## Project Folder Structure
 
 Here shows the file tree of our main project folder `student-distrib` in a level of 2.
 
@@ -57,7 +57,7 @@ Some files and folder are omitted.
 
 
 
-### Environment w/ configuration
+## Environment w/ configuration
 
 > For general environment preparation, please refer to the mp0 document provided to you at the very beginning.
 
@@ -72,7 +72,7 @@ To make our kernel work with Graphical User Interface (GUI), you need to add sta
 
 
 
-### Build and Run
+## Build and Run
 
 After successfully `make install` amd `make` to compile our kernel (it supposes to work smoothly), open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. Enter `c` or `continue` to execute our kernel.
 
@@ -80,13 +80,13 @@ You can also modify the QEMU configuration file to disable GDB breakpoint at the
 
 
 
-### Demo
+## Demo
 
-##### Boot Animation
+### Boot Animation
 
 The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency. I will try to upload a video here.
 
-##### Desktop
+### Desktop
 
 The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I suppose to design a real clock, but GUI took too much time for me.
 
@@ -94,7 +94,7 @@ The desktop contains a backgroud, a status bar with a terminal icon on the left-
 
 
 
-##### Terminal
+### Terminal
 
 Use the mouse to click the terminal button (the mouse is a little bit hard to use, do not use your touch pad), you enter into the terminal interface. The terminal is converted from text mode into graphical mode. 
 
@@ -102,7 +102,7 @@ Use the mouse to click the terminal button (the mouse is a little bit hard to us
 
 
 
-##### Functionality
+### Functionality
 
 All functionalities required by the MP3 are realized. I will just show something here.
 
