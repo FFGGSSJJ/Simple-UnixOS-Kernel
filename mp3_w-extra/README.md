@@ -14,15 +14,7 @@ Some files and folder are omitted.
 .
 ├── data	# Place the necessary data file for boot animation, icon and desktop.
 │   ├── boot_imgs.c
-│   ├── boot_imgs.h
-│   ├── boot_imgss.c
-│   ├── color.h
-│   ├── desktop.c
-│   ├── desktop.h
-│   ├── icons.c
-│   ├── icons.h
-│   ├── vbe_text.c
-│   └── vbe_text.h
+│   ├── ......
 ├── drivers	# Place the driver codes like keyboard/mouse driver, rtc/pit driver, PCIe scanner as well as the VGA driver (the so called VBE)
 │   ├── filesystem.c
 │   ├── filesystem.h
