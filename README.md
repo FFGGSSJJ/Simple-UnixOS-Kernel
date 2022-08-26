@@ -17,6 +17,12 @@ Hi, folks. This is the repo for <u>*UIUC ECE391 Operating System*</u>, where we 
 
 Thank you all for the extraordinary works your guys have done. This repo will not exist without your works.
 
+I distinguish two mp3 project folders for your convenience when refer to the code as some extra credit codes may change the original functionality.
+
+That's it.
+
+
+
 ### ACADEMIC INTEGRITY STATEMENT
 
 According to [UIUC ACADEMIC INTEGRITY POLICY](https://studentcode.illinois.edu/article1/part4/1-401/):
