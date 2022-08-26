@@ -4,6 +4,85 @@ The kernel we designed is named as `Xunil`, which is just a reversion of `Linux`
 
 All four members in this team contribute to this kernel.
 
+### Project Folder Structure
+
+Here shows the file tree of our main project folder `student-distrib` in a level of 2.
+
+```sh
+.
+├── DEBUG
+├── INSTALL
+├── Makefile
+├── Makefile.dep
+├── boot.S
+├── data										# Place the necessary data file for boot animation, icon and desktop.
+│   ├── boot_imgs.c
+│   ├── boot_imgs.h
+│   ├── boot_imgss.c
+│   ├── color.h
+│   ├── desktop.c
+│   ├── desktop.h
+│   ├── icons.c
+│   ├── icons.h
+│   ├── vbe_text.c
+│   └── vbe_text.h
+├── debug.h
+├── debug.sh
+├── drivers									# Place the driver codes like keyboard/mouse driver, rtc/pit driver, PCIe scanner as well as the VGA driver (the so called VBE)
+│   ├── filesystem.c
+│   ├── filesystem.h
+│   ├── i8259.c
+│   ├── i8259.h
+│   ├── keyboard.c
+│   ├── keyboard.h
+│   ├── mouse.c
+│   ├── mouse.h
+│   ├── pci.c
+│   ├── pci.h
+│   ├── pit.c
+│   ├── pit.h
+│   ├── rtc.c
+│   ├── rtc.h
+│   ├── statusbar.c
+│   ├── statusbar.h
+│   ├── terminal.c
+│   ├── terminal.h
+│   ├── vbe.c
+│   └── vbe.h
+├── filesys_img
+├── kernel									# Place the kernel feature codes like paging and scheduler.
+│   ├── asm_linkage.S
+│   ├── asm_linkage.h
+│   ├── idt.c
+│   ├── idt.h
+│   ├── paging.c
+│   ├── paging.h
+│   ├── paging_asm.S
+│   ├── pcb.c
+│   ├── pcb.h
+│   ├── pcb_asm.S
+│   ├── schedule.c
+│   ├── schedule.h
+│   ├── schedule_asm.S
+│   ├── system_call.c
+│   ├── system_call.h
+│   └── system_call_asm.S
+├── kernel.c
+├── launch.sh
+├── lib.c
+├── lib.h
+├── makeresult
+├── mp3.img
+├── multiboot.h
+├── tests.c
+├── tests.h
+├── types.h
+├── x86_desc.S
+└── x86_desc.h
+```
+
+
+
 ### Environment w/ configuration
 
 > For general environment preparation, please refer to the mp0 document provided to you at the very beginning.
