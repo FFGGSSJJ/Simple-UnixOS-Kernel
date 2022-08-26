@@ -2,7 +2,7 @@
 
 ### 
 
-> *Everyone who want to <u>visit/read/fork/clone</u> this repo, please read the texts and **statement** below before you start. It is important both for you and me.*
+> *Everyone who wants to <u>visit/read/fork/clone</u> this repo, please read the texts and **statement** below before you start. It is important both for you and me.*
 
 ### Intro
 
