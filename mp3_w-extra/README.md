@@ -10,7 +10,7 @@ All four members in this team contribute to this kernel.
 
 I build and test this kernel in a Ubuntu Virtural Machine with ubuntu version `Ubuntu 20.04`.
 
-To make our kernel work with Graphical User Interface (GUI), you need to add standard VGA PCIe feature in the QEMU configuration file. Mine is shown below:
+To make our kernel work with Graphical User Interface (GUI), you need to add standard VGA PCIe feature `-vga std` in the QEMU configuration file. Mine is shown below:
 
 ```sh
 #!/bin/sh
