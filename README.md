@@ -2,6 +2,21 @@
 
 ### 
 
+> *Everyone who want to <u>visit/read/fork/clone</u> this repo, please read the texts and **statement** below before you start. It is important both for you and me.*
+
+### Intro
+
+Hi, folks. This is the repo for <u>*UIUC ECE391 Operating System*</u>, where we stored our codes for all 3 MPs and 2 PSs. 
+
+### MyTeam
+
+- Guanshujie Fu
+- Jiahao Wei
+- Xiaomin Qiu
+- Zitai Kong
+
+Thank you all for the extraordinary works your guys have done. This repo will not exist without your works.
+
 ### ACADEMIC INTEGRITY STATEMENT
 
 According to [UIUC ACADEMIC INTEGRITY POLICY](https://studentcode.illinois.edu/article1/part4/1-401/):
