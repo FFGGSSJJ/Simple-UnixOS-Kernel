@@ -1,0 +1,379 @@
+boot.o: boot.S multiboot.h x86_desc.h types.h
+x86_desc.o: x86_desc.S x86_desc.h types.h
+kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h drivers/i8259.h \
+  drivers/../types.h debug.h tests.h kernel/paging.h kernel/../types.h \
+  kernel/../lib.h kernel/../drivers/terminal.h \
+  kernel/../drivers/../types.h kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../multiboot.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  drivers/filesystem.h drivers/rtc.h kernel/idt.h kernel/../x86_desc.h \
+  kernel/asm_linkage.h kernel/../drivers/rtc.h \
+  kernel/../drivers/keyboard.h kernel/../drivers/pit.h \
+  kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../kernel/../lib.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/system_call.h kernel/pcb.h kernel/../drivers/filesystem.h \
+  kernel/paging.h drivers/keyboard.h drivers/terminal.h drivers/../lib.h \
+  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
+  drivers/../kernel/pcb.h kernel/system_call.h drivers/pit.h \
+  kernel/schedule.h
+lib.o: lib.c lib.h types.h drivers/terminal.h drivers/../types.h \
+  drivers/../lib.h drivers/../drivers/keyboard.h \
+  drivers/../drivers/i8259.h drivers/../drivers/../types.h \
+  drivers/../drivers/terminal.h drivers/../drivers/../lib.h \
+  drivers/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
+  drivers/../kernel/pcb.h drivers/keyboard.h kernel/pcb.h
+tests.o: tests.c tests.h x86_desc.h types.h lib.h drivers/rtc.h \
+  drivers/../types.h drivers/../lib.h drivers/i8259.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../drivers/i8259.h \
+  drivers/../drivers/terminal.h drivers/../drivers/../types.h \
+  drivers/../drivers/../lib.h drivers/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
+  drivers/../kernel/pcb.h kernel/paging.h drivers/keyboard.h \
+  drivers/filesystem.h drivers/terminal.h
+asm_linkage.o: kernel/asm_linkage.S kernel/asm_linkage.h
+paging_asm.o: kernel/paging_asm.S
+pcb_asm.o: kernel/pcb_asm.S
+schedule_asm.o: kernel/schedule_asm.S
+system_call_asm.o: kernel/system_call_asm.S
+filesystem.o: drivers/filesystem.c drivers/filesystem.h \
+  drivers/../types.h drivers/../multiboot.h drivers/../types.h \
+  drivers/../lib.h
+i8259.o: drivers/i8259.c drivers/i8259.h drivers/../types.h \
+  drivers/../lib.h drivers/../types.h
+keyboard.o: drivers/keyboard.c drivers/keyboard.h drivers/i8259.h \
+  drivers/../types.h drivers/terminal.h drivers/../lib.h \
+  drivers/../types.h drivers/../drivers/keyboard.h \
+  drivers/../kernel/paging.h drivers/../kernel/../types.h \
+  drivers/../kernel/../lib.h drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/pcb.h
+pit.o: drivers/pit.c drivers/../lib.h drivers/../types.h \
+  drivers/../types.h drivers/pit.h drivers/../kernel/schedule.h \
+  drivers/../kernel/../types.h drivers/../kernel/../lib.h \
+  drivers/../kernel/pcb.h drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/terminal.h drivers/../kernel/paging.h \
+  drivers/../kernel/../x86_desc.h drivers/../kernel/../types.h \
+  drivers/../kernel/system_call.h drivers/i8259.h
+rtc.o: drivers/rtc.c drivers/rtc.h drivers/../types.h drivers/../lib.h \
+  drivers/../types.h drivers/i8259.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../drivers/i8259.h \
+  drivers/../drivers/terminal.h drivers/../drivers/../types.h \
+  drivers/../drivers/../lib.h drivers/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
+  drivers/../kernel/pcb.h
+terminal.o: drivers/terminal.c drivers/terminal.h drivers/../types.h \
+  drivers/../lib.h drivers/../types.h drivers/../drivers/keyboard.h \
+  drivers/../drivers/i8259.h drivers/../drivers/../types.h \
+  drivers/../drivers/terminal.h drivers/../drivers/../lib.h \
+  drivers/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
+  drivers/../kernel/pcb.h
+idt.o: kernel/idt.c kernel/idt.h kernel/../x86_desc.h kernel/../types.h \
+  kernel/../lib.h kernel/asm_linkage.h kernel/../drivers/rtc.h \
+  kernel/../drivers/../types.h kernel/../drivers/../lib.h \
+  kernel/../drivers/i8259.h kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../multiboot.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/keyboard.h kernel/../drivers/pit.h \
+  kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../kernel/../lib.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/system_call.h kernel/pcb.h kernel/../drivers/filesystem.h \
+  kernel/paging.h
+paging.o: kernel/paging.c kernel/paging.h kernel/../types.h \
+  kernel/../lib.h kernel/../types.h kernel/../drivers/terminal.h \
+  kernel/../drivers/../types.h kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../multiboot.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h
+pcb.o: kernel/pcb.c kernel/pcb.h kernel/../types.h kernel/../lib.h \
+  kernel/../types.h kernel/../drivers/filesystem.h \
+  kernel/../drivers/../types.h kernel/../drivers/../multiboot.h \
+  kernel/../drivers/../types.h kernel/../drivers/../lib.h \
+  kernel/../drivers/terminal.h kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
+  kernel/../drivers/terminal.h
+schedule.o: kernel/schedule.c kernel/schedule.h kernel/../types.h \
+  kernel/../lib.h kernel/../types.h kernel/pcb.h \
+  kernel/../drivers/filesystem.h kernel/../drivers/../types.h \
+  kernel/../drivers/../multiboot.h kernel/../drivers/../types.h \
+  kernel/../drivers/../lib.h kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
+  kernel/../drivers/terminal.h kernel/paging.h kernel/../x86_desc.h \
+  kernel/system_call.h
+system_call.o: kernel/system_call.c kernel/system_call.h kernel/../lib.h \
+  kernel/../types.h kernel/pcb.h kernel/../types.h \
+  kernel/../drivers/filesystem.h kernel/../drivers/../types.h \
+  kernel/../drivers/../multiboot.h kernel/../drivers/../types.h \
+  kernel/../drivers/../lib.h kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../types.h \
+  kernel/../drivers/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
+  kernel/../drivers/terminal.h kernel/paging.h kernel/../x86_desc.h
