@@ -1,4 +1,4 @@
-make: Warning: File `Makefile.dep' has modification time 4.1 s in the future
+make: Warning: File `Makefile.dep' has modification time 12 s in the future
 gcc  -nostdinc -g  -c -o boot.o boot.S
 gcc  -nostdinc -g  -c -o x86_desc.o x86_desc.S
 gcc  -nostdinc -g  -c -o kernel/asm_linkage.o kernel/asm_linkage.S
@@ -9,18 +9,27 @@ gcc  -nostdinc -g  -c -o kernel/system_call_asm.o kernel/system_call_asm.S
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel.o kernel.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o lib.o lib.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o tests.o tests.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o data/boot_imgs.o data/boot_imgs.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o data/boot_imgss.o data/boot_imgss.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o data/desktop.o data/desktop.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o data/icons.o data/icons.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o data/vbe_text.o data/vbe_text.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/filesystem.o drivers/filesystem.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/i8259.o drivers/i8259.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/keyboard.o drivers/keyboard.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/mouse.o drivers/mouse.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/pci.o drivers/pci.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/pit.o drivers/pit.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/rtc.o drivers/rtc.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/statusbar.o drivers/statusbar.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/terminal.o drivers/terminal.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o drivers/vbe.o drivers/vbe.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel/idt.o kernel/idt.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel/paging.o kernel/paging.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel/pcb.o kernel/pcb.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel/schedule.o kernel/schedule.c
 gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel/system_call.o kernel/system_call.c
 rm -f bootimg
-gcc -nostdlib -static boot.o x86_desc.o kernel/asm_linkage.o kernel/paging_asm.o kernel/pcb_asm.o kernel/schedule_asm.o kernel/system_call_asm.o kernel.o lib.o tests.o drivers/filesystem.o drivers/i8259.o drivers/keyboard.o drivers/pit.o drivers/rtc.o drivers/terminal.o kernel/idt.o kernel/paging.o kernel/pcb.o kernel/schedule.o kernel/system_call.o -Ttext=0x400000 -o bootimg
+gcc -nostdlib -static boot.o x86_desc.o kernel/asm_linkage.o kernel/paging_asm.o kernel/pcb_asm.o kernel/schedule_asm.o kernel/system_call_asm.o kernel.o lib.o tests.o data/boot_imgs.o data/boot_imgss.o data/desktop.o data/icons.o data/vbe_text.o drivers/filesystem.o drivers/i8259.o drivers/keyboard.o drivers/mouse.o drivers/pci.o drivers/pit.o drivers/rtc.o drivers/statusbar.o drivers/terminal.o drivers/vbe.o kernel/idt.o kernel/paging.o kernel/pcb.o kernel/schedule.o kernel/system_call.o -Ttext=0x400000 -o bootimg
 sudo ./debug.sh
 make: warning:  Clock skew detected.  Your build may be incomplete.

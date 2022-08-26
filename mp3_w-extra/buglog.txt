@@ -129,22 +129,3 @@ Bug Description:
 	When we run cat XXX, the output is repeated strings.
 DeBug:
 	We does not correctly the position in pcb for file read and directory read.
-
-
-MP 3.5
-
-12.
-Location:
-	schedule_asm.S
-Bug Description:
-	Page fault happens when doing scheduling.
-DeBug:
-	Forget to popl saved registers before calling ret. The return address
-is wrong.
-
-13.
-Description:
-	When more than one terminal running pingpong, the program seems to be
-running for sometime, then it stops, and then continue running.
-DeBug:
-	Use virtual rtc, each terminal has one rtc_read flag.

@@ -6,6 +6,7 @@
 #include "../lib.h"
 #include "i8259.h"
 #include "terminal.h"
+#include "vbe.h"
 
 /* Constants */
 

@@ -5,8 +5,6 @@
  * @modifier: Guanshujie Fu
  * @description: functions for rtc initialization and rate set
  * @creat_date: 2022.3.19 - IMPORTANT: initialize masks
- * @reference: https://wiki.osdev.org/PIC
- *             ece391 lecture codes
  */
 
 

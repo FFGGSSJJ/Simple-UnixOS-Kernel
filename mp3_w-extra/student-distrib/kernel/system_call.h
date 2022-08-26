@@ -10,6 +10,7 @@
 #include "../drivers/filesystem.h"
 #include "paging.h"
 #include "../x86_desc.h"
+#include "../types.h"
 
 int32_t halt(uint16_t status);
 
@@ -30,3 +31,7 @@ int32_t vidmap(uint8_t** screen_start);
 int32_t set_handler(int32_t signum, void* handler_address);
 
 int32_t sigreturn(void);
+
+int32_t sound(uint32_t nFrequence);
+
+int32_t nosound(void);

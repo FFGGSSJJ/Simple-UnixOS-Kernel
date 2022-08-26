@@ -3,6 +3,9 @@
  * @brief 
  * @version 0.1
  * @date 2022-04-06
+ * @reference https://wiki.osdev.org/PC_Speaker
+ *            https://wiki.osdev.org/PIT
+ * 
  */
 
 #include "system_call.h"
@@ -20,6 +23,35 @@
 #define PCBFULL -2
 #define HALTFAIL -3
 
+// PIT relative constants
+// I/O Port
+/* 
+ * Channel0: connect to IRQ0
+ * Channel1: originally refresh DRAM, now unusable
+ * Channel2: connect to PC speaker
+ * In our design, only Channel2 is used
+*/
+#define PIT_DATA_PORT0 0x40   // Channel 0 data port (r/w)
+#define PIT_DATA_PORT1 0x41   // Channel 1 data port (r/w)
+#define PIT_DATA_PORT2 0x42   // Channel 2 data port (r/w)
+
+// Mode Register
+#define MODE_REG 0x43   // Mode/Command Register (write only)
+
+// Read Back Status Byte
+// We need Access mode: lobyte/hibyte and Operating mode 3 (square wave)
+// i.e. 10110110 = 0x36
+#define READ_BACK_STATUS 0xb6
+
+// Rate Settings
+#define DEFAULT_RATE 1193180    //1.193182 MHz
+
+//Other
+#define TIMER_PORT  0x61
+#define HIGH_SHIFT  8
+#define LOW2_MASK   3
+#define HIGH8_MASK  0xfc
+
 extern inline int32_t transit_to_user(uint32_t user_esp, uint32_t user_eip);
 extern inline void jump_to_execute_ret(uint32_t kernel_esp, uint8_t status);
 
@@ -29,6 +61,7 @@ func_ptr terminal_operations[4] = {terminal_open, terminal_close, terminal_read,
 func_ptr rtc_operations[4]      = {rtc_open, rtc_close, rtc_read, rtc_write};
 func_ptr file_operations[4]     = {file_open, file_close, file_read, file_write};
 func_ptr dir_operations[4]      = {dir_open, dir_close, dir_read, dir_write};
+
 
 /**
  * @brief: attempts to load and execute a new program,
@@ -79,7 +112,7 @@ int32_t execute(const uint8_t* command)
     /* Create PCB */
     int8_t pid;
     if (-1 == (pid = create_pcb())) // cannot create more process
-        return -1;
+        return -2;
     pcb_t *child_pcb = get_pcb(pid);
     cli();
     // modify scheduled_process
@@ -352,7 +385,8 @@ int32_t write(int32_t fd, const void* buf, int32_t nbytes)
     }
 
     // Execute corresponding read operation
-    retval = (*(pcb->file_array[fd].fops_ptr[WRITE]))(fd,buf,nbytes);
+    uint32_t inode_id = pcb->file_array[fd].inode_num;
+    retval = (*(pcb->file_array[fd].fops_ptr[WRITE]))(inode_id,buf,nbytes);
     // what if retval = -1?
     return retval;
 }
@@ -436,5 +470,59 @@ int32_t set_handler(int32_t signum, void* handler_address)
  */
 int32_t sigreturn(void)
 {
+    return 0;
+}
+
+
+/* 
+ *  syscall_sound
+ *  DESCRIPTION: Play sound using built in PC speaker
+ *  INPUTS:     nFrequence - speaker base frequence
+ *  OUTPUTS:    none
+ *  RETURN VALUE: 0 always
+ *  SIDE EFFECT: make sounds in speaker and change PIT status
+ *  REFERENCE: https://wiki.osdev.org/PC_Speaker
+ */
+int32_t sound(uint32_t nFrequence)
+{
+    uint32_t Div;
+ 	uint8_t tmp;
+
+    // Check if input is valid, if not do nothing
+    if (nFrequence == 0) {
+        return 0;
+    }
+
+    //Set the PIT to the desired frequency
+    Div = DEFAULT_RATE / nFrequence; 
+    outb(READ_BACK_STATUS, MODE_REG);   // Set Mode/Command Register
+    outb((uint8_t) (Div), PIT_DATA_PORT2);  // low bytes
+    outb((uint8_t) (Div >> HIGH_SHIFT), PIT_DATA_PORT2);    // high bytes
+
+    // play the sound using the PC speaker
+    // connected directly to the output of timer number 2 on the Programmable Interval Timer
+    tmp = inb(TIMER_PORT);
+    if (tmp != (tmp | LOW2_MASK)) {
+        outb(tmp | LOW2_MASK, TIMER_PORT);
+    }
+
+    return 0;
+    
+}
+
+
+/* 
+ *  syscall_nosound
+ *  DESCRIPTION: mute the PC speaker
+ *  INPUTS:     none
+ *  OUTPUTS:    none
+ *  RETURN VALUE: 0 always
+ *  SIDE EFFECT: mute speaker and change PIT status
+ *  REFERENCE: https://wiki.osdev.org/PC_Speaker
+ */
+int32_t nosound(void)
+{
+    uint8_t temp = inb(TIMER_PORT) & HIGH8_MASK;
+    outb(temp, TIMER_PORT);
     return 0;
 }

@@ -14,16 +14,17 @@
 
 #include "i8259.h"
 #include "terminal.h"
+#include "filesystem.h"
 #include "../lib.h"
 #include "../types.h"
 // constants
 #define KB_DATA    0x60
 #define KB_BUF_SIZE    128
 
-volatile unsigned int KB_BUF_INDEX;
+//volatile unsigned int KB_BUF_INDEX;
 
 /* Keyboard buffer is 128 bytes */
-unsigned char keyboard_buffer[KB_BUF_SIZE];
+//unsigned char keyboard_buffer[KB_BUF_SIZE];
 
 #if (TEST_MODE == 1)
     uint8_t key_pressed;
@@ -52,6 +53,10 @@ unsigned char keyboard_buffer[KB_BUF_SIZE];
 #define F1_PRESS        0x3B
 #define F2_PRESS        0x3C
 #define F3_PRESS        0x3D
+#define UP_PRESS                  0x48
+#define DOWN_PRESS                0x50
+#define UP                  1
+#define DOWN                0
 
 #define terminal_0 0
 #define terminal_1 1
@@ -65,5 +70,5 @@ extern void keyboard_init(void);
 /* handles interrupt and echos characters */
 extern void keyboard_handler(void);
 
-
+void tabpressed();
 #endif

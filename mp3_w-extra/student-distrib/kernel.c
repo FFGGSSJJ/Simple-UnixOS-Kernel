@@ -17,6 +17,10 @@
 #include "kernel/system_call.h"
 #include "drivers/pit.h"
 #include "kernel/schedule.h"
+#include "drivers/pci.h"
+#include "drivers/vbe.h"
+#include "data/desktop.h"
+#include "drivers/mouse.h"
 
 #define RUN_TESTS
 
@@ -148,10 +152,17 @@ void entry(unsigned long magic, unsigned long addr) {
     /* need to be initialized before enabling paging */
     init_filesystem(mbi);
 
+    /* initialize pci for qemu vga */
+    pci_init();
+
+    /* initialize vbe */
+    vbe_init(QEMU_VGA_DEFAULT_WIDTH, QEMU_VGA_DEFAULT_HEIGHT, VBE_DISPI_BPP_32);
+
     /* initialize paging */
     paging_init_kernel();
-    // map_vir_to_phy_4M(0x08000000, 0x00400000 << 1);
-    // test_program_mapping();
+
+    /* vbe displays test */
+    //vbe_display_test();
 
     /* initialize IDT*/
     interrupt_init();
@@ -179,6 +190,9 @@ void entry(unsigned long magic, unsigned long addr) {
     /* initialize pit */
     pit_init();
 
+    /* initialize mouse */
+    mouse_init();
+
     /* Enable interrupts */
     /* Do not enable the following until after you have set up your
      * IDT correctly otherwise QEMU will triple fault and simple close
@@ -192,7 +206,14 @@ void entry(unsigned long magic, unsigned long addr) {
     // launch_tests();
 #endif
     /* Execute the first program ("shell") ... */
+    //vbe_displaying_set(0);
+    //statusbar_init();
+    boot_animation();
+    transparent_sb();
+    show_desktop(DESKTOP_IMAGE_HEIGHT, DESKTOP_IMAGE_WIDTH, (uint8_t*)DESKTOP_IMAGE_DATA);
+    vbe_mouse_init();
     execute((uint8_t*)"shell");
+
 
     /* Spin (nicely, so we don't chew up cycles) */
     asm volatile (".1: hlt; jmp .1;");

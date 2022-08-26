@@ -107,6 +107,28 @@ void paging_init_kernel(void) {
             kernel_page_table_0_4M[( (TERMINAL_VID_BEGIN + VIDMEM_SIZE*i) & table_field) >> offset_field_len] = video_memory_pte;
         }
     }
+
+    /* initialize the VGA/VBE linear frame buffer using qemu_vga_addr */
+    /* I assign a really large sapce for vga memory */
+    {
+        uint32_t vbe_pagedir_start = ((uint32_t)qemu_vga_addr) >> (table_field_len + offset_field_len);
+        uint32_t vbe_pagedir_end   = ((uint32_t)qemu_vga_addr + VGA_MEM_SIZE) >> (table_field_len + offset_field_len);
+        for (i = vbe_pagedir_start; i < vbe_pagedir_end; i++) {
+            kernel_page_dir[i].MByte.present            = 0x1;
+            kernel_page_dir[i].MByte.read_or_write      = 0x1;
+            kernel_page_dir[i].MByte.user_or_supervisor = 0x0;
+            kernel_page_dir[i].MByte.write_through      = 0x0;
+            kernel_page_dir[i].MByte.cache_disabled     = 0x1;
+            kernel_page_dir[i].MByte.accessed           = 0x0;
+            kernel_page_dir[i].MByte.dirty              = 0x0;
+            kernel_page_dir[i].MByte.pat                = 0x0;
+            kernel_page_dir[i].MByte.global_page        = 0x0;
+            kernel_page_dir[i].MByte.avail              = 0x0;
+            kernel_page_dir[i].MByte.reserved           = 0x0;
+            kernel_page_dir[i].MByte.page_size          = 0x1;
+            kernel_page_dir[i].MByte.base_address       = i;
+        }
+    }
     load_CR3((uint32_t)kernel_page_dir);
     enable_paging();
 }
@@ -233,10 +255,16 @@ int32_t update_usr_vidmem(int32_t terminal_id)
     uint8_t* vir_vmem = (uint8_t*) VIRTUAL_VMEM_BEGIN;
     uint32_t page_tbl_id = ((uint32_t) vir_vmem & table_field) >> offset_field_len;
     /* set the vidmap for incoming displaying terminal */
-    /* i.e. 0x10000000 -> 0x000B8000, 0x000B8000 -> 0x000B8000 */
+    /* if in text mode: 0x10000000 -> 0x000B8000, 0x000B8000 -> 0x000B8000 
+     * if in vbe mode:  0x10000000 -> buffer      0x000B8000 -> 0x000B8000*/
     if (terminal_id == current_active_termid) {
-        kernel_page_table_0_4M[(VIDEO & table_field) >> offset_field_len].KByte.base_address = VIDEO >> offset_field_len;
-        user_page_4K[page_tbl_id].KByte.base_address = VIDEO >> offset_field_len;
+        if (qemu_vga_enabled) {
+            kernel_page_table_0_4M[(VIDEO & table_field) >> offset_field_len].KByte.base_address = (uint32_t) (multi_terminals[terminal_id].screen_buffer) >> offset_field_len;
+            user_page_4K[page_tbl_id].KByte.base_address = (uint32_t) (multi_terminals[terminal_id].screen_buffer) >> offset_field_len;
+        } else {
+            kernel_page_table_0_4M[(VIDEO & table_field) >> offset_field_len].KByte.base_address = (uint32_t) (VIDEO) >> offset_field_len;
+            user_page_4K[page_tbl_id].KByte.base_address = (uint32_t) (VIDEO) >> offset_field_len;
+        }
     } else {
     /* set the vidmap for background terminal */
     /* i.e. 0x10000000 -> buffer, 0x000B8000 -> buffer */

@@ -13,6 +13,7 @@
 #include "../drivers/rtc.h"
 #include "../drivers/keyboard.h"
 #include "../drivers/pit.h"
+#include "../drivers/mouse.h"
 #include "system_call.h"
 
 
@@ -20,6 +21,7 @@
 extern void rtc_handler_linkage();
 extern void keyboard_handler_linkage();
 extern void pit_handler_linkage();
+extern void mouse_handler_linkage();
 
 // linkages for system call
 extern void system_call_linkage();

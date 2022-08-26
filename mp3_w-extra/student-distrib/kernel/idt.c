@@ -7,6 +7,7 @@
  *             2022.3.18 - add linkages to idt
  *             2022.3.22 - add system call  entry
  *             2022.4.22 - add pit
+ *             2022.4.30 - add mouse
  */
 
 
@@ -375,4 +376,5 @@ void interrupt_init(void){
     SET_IDT_ENTRY(idt[PIT], pit_handler_linkage); 
     SET_IDT_ENTRY(idt[RTC], rtc_handler_linkage); 
     SET_IDT_ENTRY(idt[KEYBOARD], keyboard_handler_linkage);
+    SET_IDT_ENTRY(idt[MOUSE], mouse_handler_linkage);
 }

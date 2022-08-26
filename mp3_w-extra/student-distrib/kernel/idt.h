@@ -18,6 +18,7 @@
 #define PIT 		0x20
 #define KEYBOARD 	0x21
 #define RTC 		0x28
+#define MOUSE       0x2C
 #define DPL_KERNEL  0
 #define DPL_USER    3
 #define EXCEPTION_STATUS 256

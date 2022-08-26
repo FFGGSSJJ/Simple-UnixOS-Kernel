@@ -97,10 +97,11 @@ int32_t terminal_read(uint32_t inode_num, int32_t position, char *buf, int32_t n
     if (buf == NULL || nbytes < 0)
         return -1;
     
+    int32_t i;
+
     /* signal interrupt handler to store char into buffer */
     current_terminal->TERMINAL_READ_FLAG = 1;
-
-    //int32_t bytes_num = (nbytes < (int32_t)current_terminal.buf_index) ? nbytes : (int32_t)current_terminal.buf_index;
+    int32_t bytes_num = 0;
     /* clear keyboard buffer */
     current_terminal->buf_index = 0;
     /* wait until interrupt handler clear TERMINAL_READ_FLAG
@@ -110,18 +111,16 @@ int32_t terminal_read(uint32_t inode_num, int32_t position, char *buf, int32_t n
 
     while (current_terminal->TERMINAL_READ_FLAG);
 
-    int32_t i;
-    int32_t bytes_num = 0;
-    for (i = 0; i < BUFFER_SIZE; i++)
-    {
-        if (current_terminal->buffer[i] == '\n' || current_terminal->buffer[i] == '\r')
-        {
+    
+    for (i = 0; i < BUFFER_SIZE; i++){
+        /* copy from keyboard buffer to history buffer*/
+        current_terminal->history[current_terminal->history_num][i] = current_terminal->buffer[i];
+
+        if (current_terminal->buffer[i] == '\n' || current_terminal->buffer[i] == '\r'){
             current_terminal->terminal_active = 1;
             //if (bytes_num > i)
-            if(i < BUFFER_SIZE)
-                bytes_num = i + 1;
+            if(i < BUFFER_SIZE) bytes_num = i + 1;
             
-            bytes_num = (nbytes < bytes_num) ? nbytes : bytes_num;
             /* copy from keyboard buffer to caller's buffer*/
             (void)strncpy((int8_t *)buf, (int8_t *)current_terminal->buffer, bytes_num);
             memset((void *)current_terminal->buffer, 0, (uint32_t)BUFFER_SIZE);
@@ -129,7 +128,11 @@ int32_t terminal_read(uint32_t inode_num, int32_t position, char *buf, int32_t n
         }
         bytes_num = bytes_num + 1;
     }
-
+    bytes_num = (nbytes < bytes_num) ? nbytes : bytes_num;
+    // update the history info
+    current_terminal->history_num++;
+    current_terminal->history_index = current_terminal->history_num - 1;  
+    
     return bytes_num;
 }
 
@@ -180,15 +183,16 @@ void terminal_switch(int32_t terminal_id){
         return;
     }
     terminal_t* current_terminal = get_active_terminal();
+    if (terminal_id < TERM_NUM) show_picture = 0;
 
     /* the order of code for following part is tricky. Read carefully before modifying */
     /* make sure current displaying terminal's vidmap is correct. i.e. 0xB8000 -> 0xB8000, buffer -> buffer */
     update_usr_vidmem(current_active_termid);
     /* store current video into the buffer */
-    memcpy((void *)current_terminal->screen_buffer, (void *) PHYSICAL_VMEM_BEGIN, VID_SIZE);
+    //memcpy((void *)current_terminal->screen_buffer, (void *) PHYSICAL_VMEM_BEGIN, VID_SIZE);
     /* restore next terminal's screen buffer into video memory */
-    memcpy((void *) PHYSICAL_VMEM_BEGIN, (void *)multi_terminals[terminal_id].screen_buffer, VID_SIZE);
-
+    //memcpy((void *) PHYSICAL_VMEM_BEGIN, (void *)multi_terminals[terminal_id].screen_buffer, VID_SIZE);
+    
     /* update the switched video */
     current_active_termid = terminal_id;
     update_usr_vidmem(terminal_id);
@@ -197,9 +201,19 @@ void terminal_switch(int32_t terminal_id){
     /* update cursor */
     update_cursor(current_terminal->cursor_x, current_terminal->cursor_y);
 
+    /* switch vbe screen into corresponding termianl */
+    vbe_displaying_set(terminal_id);
+    swtich_terminalinfo();
+    icon_update(terminal_id);
+
     /* IMPORTANT */
-    /* this function is needed to make the video display correct */
-    /* I don't know why. I spent 6 hours for the display bug. It is fixed. */
+    /* This function i.e. fresh_video() is needed to make the video display correct */
+    /* I don't know why. I spent 6 ~ 8 hours for this display bug. 
+     * I have checked page mapping/user video memory setting/user vidmem update/memory buffer setting
+     * and everything works fine. This bug is 'indicated' when i ran different rtc and video memory related 
+     * calls on two terminals.
+     * It is now fixed by simply freshing the current video memory stuffs.
+     */
     fresh_video();
 
     sti();
@@ -243,7 +257,76 @@ int32_t terminal_init()
         multi_terminals[i].cursor_y = 0;
         multi_terminals[i].put_mode = 1;
         multi_terminals[i].screen_buffer = (uint32_t*) (TERM_VID_BEGIN + VID_SIZE*i);
+        multi_terminals[i].rtc_flag = 0;
+        multi_terminals[i].rtc_rate = 2; // bottom rate
+        multi_terminals[i].history_num = 0; //total number of history
+        multi_terminals[i].history_index = -1; //current index of history
+        multi_terminals[i].history_size = 100;
     }
     current_active_termid = 0;
     return 0;
+}
+/*
+ * https://github.com/RicciZ/ECE391
+ * void search_history(int32_t flag)
+ * inputs:          int32_t 
+ * return value:    none
+ * outputs:         search the command history
+ * notes:           
+ */
+void search_history(int32_t flag){
+    int32_t i;      // loop index
+    terminal_t* current_terminal = get_active_terminal();
+    if (current_terminal->history_index == -1 && flag == 1) return;
+
+    // delete all the characters shown on the screen
+    if (current_terminal->buf_index != 0){
+        for (i = 0; i < current_terminal->buf_index; ++i){
+            backspace();
+        }
+    }
+
+    // get history
+    if (flag == 1){ // get previous command
+        i = 0;
+        while (current_terminal->history[current_terminal->history_index][i] != '\n'){
+            putk(current_terminal->history[current_terminal->history_index][i]);
+            current_terminal->buffer[i] = current_terminal->history[current_terminal->history_index][i];
+            i++;
+        }
+        current_terminal->buf_index = i;
+        if (current_terminal->history_index != 0){
+            current_terminal->history_index--;
+        }
+    }
+
+    else{           // get next command
+        if (current_terminal->history_index != current_terminal->history_num - 1){
+            current_terminal->history_index++;
+            i = 0;
+            while (current_terminal->history[current_terminal->history_index][i] != '\n'){
+                putk(current_terminal->history[current_terminal->history_index][i]);
+                current_terminal->buffer[i] = current_terminal->history[current_terminal->history_index][i];
+                i++;
+            }
+            current_terminal->buf_index = i;
+        }
+        else{
+            current_terminal->buf_index = 0;
+        }
+    }
+}
+
+
+
+/*
+ * void clear_history()
+ * inputs:          none
+ * return value:    none
+ * outputs:         clear the command history
+ */
+void clear_history(){
+    terminal_t* current_terminal = get_active_terminal();
+    current_terminal->history_index = -1;
+    current_terminal->history_num = 0;
 }

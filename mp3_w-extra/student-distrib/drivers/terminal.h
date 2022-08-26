@@ -11,6 +11,8 @@
 #include "../drivers/keyboard.h"
 #include "../kernel/paging.h"
 #include "../kernel/pcb.h"
+#include "vbe.h"
+#include "statusbar.h"
 
 #ifndef _TERMINAL_H
 #define _TERMINAL_H
@@ -28,6 +30,8 @@
 #define ATTRIB              0x7
 #define SHIFT_12            12
 
+#define HITORY_BUF_SIZE     100
+
 typedef struct terminal
 { 
     /* whether the terminal is reading from keystrokes */
@@ -43,10 +47,21 @@ typedef struct terminal
     int32_t cursor_x;
     int32_t cursor_y;
     int32_t put_mode;
+    int32_t rtc_flag;
+    int32_t rtc_rate;
+
+    char history[HITORY_BUF_SIZE][BUFFER_SIZE];
+    int32_t history_num;
+    int32_t history_index;
+    int32_t history_size;
 
     /* screen buffer to store the video content for current terminal */
     uint32_t* screen_buffer;
 } terminal_t;
+
+void terminal_switch(int32_t new_ter);
+void search_history(int32_t flag);
+void clear_history();
 
 terminal_t terminal1;
 terminal_t multi_terminals[TERMINAL_NUM];

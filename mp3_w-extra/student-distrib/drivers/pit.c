@@ -3,9 +3,15 @@
 #include "pit.h"
 #include "i8259.h"
 // Add more if necessary
-/* 
-reference: https://wiki.osdev.org/PIT
-*/
+
+
+int pit_counter = 0;
+int animation_rate = 0;
+int animation_check = -1;
+int second_counter = 0;
+int minnute_couter = 0;
+int second = 0;
+int minnute = 0;
 
 /* 
  * pic_init
@@ -25,10 +31,10 @@ void pit_init(void)
 	// cli_and_save(flag);     // disable interrupts
 
     // Set Mode/Command Register
-    outb(READ_BACK_STATUS,MODE_REG);
+    outb(PITREAD_BACK_STATUS,MODE_REG);
 
     // Set interrupt period to 10ms
-    uint16_t count = DEFAULT_RATE/TEN_MS;
+    uint16_t count = PITDEFAULT_RATE/TEN_MS;
     outb((count&HIGH_MASK),PIT_DATA_PORT);    // low bytes
     outb(((count&LOW_MASK)>>HIGH_SHIFT),PIT_DATA_PORT);   // high bytes
 
@@ -56,6 +62,40 @@ void pit_handler(void)
     // cli();
     // Change the next line to schedule handler later...
     //printf("PIT interrupt received!\n");
+    char time[] = "00:00:00";
+    if (++second_counter == SECOND_RATE) {
+        if (++second == MINUTE) {
+            second = 0;
+            minnute++;
+        }
+        second_counter = 0;
+    }
+    time[7] = '0' + second%10;
+    time[6] = '0' + second/10;
+    time[4] = '0' + minnute%10;
+    time[3] = '0' + minnute/10;
+    clock_update(time);
+    if (show_picture) {
+        vbe_displaying_set(3);
+        icon_update(3);
+        pit_counter = 0;
+    }
+    if (show_picture == 0 && ++pit_counter == FRESH_COUNTER) {
+        vga_color_t font, back;
+        font.val = TERMINAL_FONT_COLOR;
+        back.val = TERMINAL_BACKGROUND_COLOR;
+        terminal_t* current_terminal = get_active_terminal();
+        vbe_transfer((uint8_t*)current_terminal->screen_buffer, current_picture_addr(), &font, &back);
+        icon_update(current_active_termid);
+        //vbe_mouse_update(cursor_x, cursor_y);
+        pit_counter = 0;
+    }
+    if (booting && ++animation_rate == ANIMA_RATE) {
+        animation_check++;
+        animation_rate = 0;
+    }
+
+
     scheduler();
     // sti();
 }

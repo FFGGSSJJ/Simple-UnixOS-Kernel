@@ -11,6 +11,7 @@
 #include "../types.h"
 #include "../lib.h"
 #include "../drivers/terminal.h"
+#include "../drivers/vbe.h"
 
 #define kernel_mem          0x00400000
 #define program_size        0x00400000
@@ -22,6 +23,7 @@
 #define PHYSICAL_VMEM_BEGIN 0x000B8000      // the start of vid 
 #define TERMINAL_VID_BEGIN  0x00300000      // 3MB as the start of the terminal video memory
 #define VIDMEM_SIZE         0x00001000      // 4KB size for video memory
+#define VGA_MEM_SIZE        0x01000000      // 16MB space for vga/vbe memory
 #define TERM_NUM            3
 #define PAGE_SIZE           1024
 

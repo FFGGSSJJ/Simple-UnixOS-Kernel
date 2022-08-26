@@ -6,19 +6,12 @@
  * @description: functions for rtc initialization and rate set
  * @creat_date: 2022.3. - 
  *             2022.3.20 - rtc_switch tests
- * @reference: https://wiki.osdev.org/RTC
- *            
  */
 
 #include "rtc.h"
 
 // The flag denotes rtc interrupts happening 
-// volatile int32_t rtc_flag;
-int32_t rtc_flag[TERMINAL_NUM] = {0};
-int32_t rtc_count[TERMINAL_NUM] = {0};
-int32_t rtc_max_count[TERMINAL_NUM] = {32,32,32}; // 32 is the default count
-
-#define my_rate 32
+volatile int32_t rtc_flag;
 
 /* 
  * rtc_init
@@ -41,7 +34,7 @@ void rtc_init(void)
     turn_off_rtc();
 
     // clear rtc_flag to make read ends
-    // rtc_flag = 0;   
+    rtc_flag = 0;   
 
     /* Avoiding NMI and Other Interrupts While Programming */
     // disable other interrupts - done by cli()
@@ -62,7 +55,7 @@ void rtc_init(void)
 
     /* Set to base interrupt rate */
     //set_irate(BASE_RATE);
-    int32_t frequency = my_rate;
+    int32_t frequency = 2; //BASE_RATE;
     int32_t rate = 0;
     char prev2;
     // find rate by applying
@@ -120,27 +113,18 @@ void rtc_handler(void)
         outb(SREG_C,IDX_PORT);  // select register C
         // This line read the data from data port but throw it away
         inb(DATA_PORT);		    // just throw away contents
-        send_eoi(RTC_IRQ);
 
         // clear rtc_flag to make read ends
         // rtc_flag = 0;
         int i;
         for (i = 0; i < TERMINAL_NUM; i++) {
-            if (rtc_flag[i] == 1)
-            {
-                if (rtc_count[i] == 0)
-                {
-                    rtc_count[i] = rtc_max_count[i];
-                    rtc_flag[i] = 0;
-                }
-                rtc_count[i]--;
-            }
-            // rtc_flag[i] = 0;
+            multi_terminals[i].rtc_flag = 0;
         }
 
         // sti();
 
         /* send eoi to end the interrupt */
+        send_eoi(RTC_IRQ);    
     
 }
 
@@ -153,16 +137,15 @@ void rtc_handler(void)
  *  RETURN VALUE: 0 if success, -1 if fail
  *  SIDE EFFECTS: open the rtc file
  */
-int32_t rtc_open(void)
+int32_t rtc_open(void) 
 {
-    // int32_t retval;
-    // retval = set_rate(BOTTOM_RATE);
-    // if (retval == -1) {
-    //     return -1;
-    // } else {
-    //     return 0;
-    // }
-    return 0;
+    int32_t retval;
+    retval = set_rate(BOTTOM_RATE);
+    if (retval == -1) {
+        return -1;
+    } else {
+        return 0;
+    }
 }
 
 
@@ -180,11 +163,16 @@ int32_t rtc_read(uint32_t inode_num, int32_t position, void* buf, int32_t nbytes
     /* it is tricky because we have no idea when the IF is clear
      * we have to add a sti here to enable rtc interrupt */
     // sti();
-    // set a flag
-    int32_t tid = (process_terminal)->tid;
-    rtc_flag[tid] = 1;
+    // set a flag 
+    // vga_color_t fontcolor;
+    // fontcolor.val = 0xFFFFFF;
+    // vga_color_t backcolor;
+    // backcolor.val = 0x000000;
+    // vbe_transfer((uint8_t*)multi_terminals[get_active_pcb()->terminalid].screen_buffer, current_running_addr(), &fontcolor, &backcolor);
+    (process_terminal)->rtc_flag = 1;
+
     // wait until the interrupt handler cleans it
-    while(rtc_flag[tid]);
+    while((process_terminal)->rtc_flag);
 
     // return 0 always after an interrupt occurs
     return 0;
@@ -222,11 +210,16 @@ int32_t rtc_write(int32_t fd, const void* buf, int32_t nbytes)
 
     // set the interrupt rate
     rate = *(int32_t*) buf;
-    if (-1 == (retval = set_rate(rate)))
-        return -1;
+    retval = set_rate(rate);
+
+    // record rtc_rate in process terminal
+    (process_terminal)->rtc_rate = rate;
 
     // sti();
 
+    if (retval == -1) {
+        return -1;
+    } 
     return nbytes;
 }
 
@@ -243,8 +236,6 @@ int32_t rtc_write(int32_t fd, const void* buf, int32_t nbytes)
 int32_t rtc_close(void)
 {
     // rtc_close do not need to do anything
-    int32_t tid = (process_terminal)->tid;
-    rtc_max_count[tid] = 32; // 32 is the default count
     return 0;
 }
 
@@ -300,35 +291,32 @@ int32_t set_rate(int32_t irate)
         return -1;
     }
 
-    // record in rtc_max_count
-    int32_t tid = (process_terminal)->tid;
-    rtc_max_count[tid] = my_rate/irate;
 
-    // int32_t frequency = irate;
-    // int32_t rate = 0;
-    // char prev;
+    int32_t frequency = irate;
+    int32_t rate = 0;
+    char prev;
     // find rate by applying
     // frequency =  32768 >> (rate-1);
-	// frequency = TOP_RATE / frequency;
-	// while(frequency > 0)
-	// {
-	// 	rate = rate + 1;
-	// 	frequency = frequency >> 1;
-	// }
-    // rate &= UP_MASK;			// rate must be above 2 and not over 15
+	frequency = TOP_RATE / frequency;
+	while(frequency > 0)
+	{
+		rate = rate + 1;
+		frequency = frequency >> 1;
+	}
+    rate &= UP_MASK;			// rate must be above 2 and not over 15
 
     // disable interrupts and NMI
-    // cli();
+    cli();
 
     // set interrupt rate
-    // outb(SREG_A,IDX_PORT);		                // set index to register A, disable NMI
-    // prev=inb(DATA_PORT);	                // get initial value of register A
-    // outb(SREG_A,IDX_PORT);		                // reset index to A
-    // outb((prev & DOWN_MASK) | rate, DATA_PORT); //write only our rate to A. Note, rate is the bottom 4 bits.
+    outb(SREG_A,IDX_PORT);		                // set index to register A, disable NMI
+    prev=inb(DATA_PORT);	                // get initial value of register A
+    outb(SREG_A,IDX_PORT);		                // reset index to A
+    outb((prev & DOWN_MASK) | rate, DATA_PORT); //write only our rate to A. Note, rate is the bottom 4 bits.
 
     // enable interrupts
 	// restore_flags(flag);
-	// sti();
+	sti();
 
     return 0;
 }

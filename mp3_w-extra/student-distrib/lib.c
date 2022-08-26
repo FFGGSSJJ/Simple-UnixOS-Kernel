@@ -5,6 +5,7 @@
 #include "drivers/terminal.h"
 #include "drivers/keyboard.h"
 #include "kernel/pcb.h"
+#include "drivers/vbe.h"
 
 #define VIDEO       0xB8000
 #define NUM_COLS    80
@@ -67,6 +68,12 @@ void clear(void) {
     // update_cursor(screen_x,screen_y);
 }
 
+/**void fresh_video(void);
+ * Input: void
+ * Output: fresh video memory
+ * Return Value: none
+ * Side Effect: fresh the content in video memory
+ */
 void fresh_video(void)
 {
     int32_t i;
@@ -91,6 +98,8 @@ void backspace(void) {
     offset--;
     *(uint8_t *)(VIDEO + (offset << 1)) = 0;
     *(uint8_t *)(VIDEO + (offset << 1) + 1) = ATTRIB;
+    *(uint8_t *)((char*)current_terminal->screen_buffer + (offset << 1)) = 0;
+    *(uint8_t *)((char*)current_terminal->screen_buffer + (offset << 1) + 1) = ATTRIB;
     offset--;
     while (offset>=0 && *(uint8_t *)(VIDEO + (offset << 1)) == 0){        
         if( (offset + 1) % NUM_COLS == 0)
@@ -296,6 +305,10 @@ void putc(uint8_t c) {
     char* video_mem_local;
     int32_t display_flag = 0;  //if need display, change it to 1
     int32_t i;
+    vga_color_t fontcolor;
+    fontcolor.val = TERMINAL_FONT_COLOR;
+    vga_color_t backcolor;
+    backcolor.val = TERMINAL_BACKGROUND_COLOR;
     
     /* get the terminal for the current running process */
     terminal_t* current_run_terminal = &multi_terminals[get_active_pcb()->terminalid]; 
@@ -313,9 +326,13 @@ void putc(uint8_t c) {
         if(display_flag){
             *(uint8_t *)(video_mem + ((NUM_COLS * screen_y + screen_x) * 2)) = c;
             *(uint8_t *)(video_mem + ((NUM_COLS * screen_y + screen_x) * 2) + 1) = ATTRIB;
+            *(uint8_t *)((char*)video_mem_local + ((NUM_COLS * screen_y + screen_x) * 2)) = c;
+            *(uint8_t *)((char*)video_mem_local + ((NUM_COLS * screen_y + screen_x) * 2) + 1) = ATTRIB;
+            vbe_putk(screen_x, screen_y, c, &fontcolor, &backcolor);
         } else {
             *(uint8_t *)((char*)video_mem_local + ((NUM_COLS * screen_y + screen_x) * 2)) = c;
             *(uint8_t *)((char*)video_mem_local + ((NUM_COLS * screen_y + screen_x) * 2) + 1) = ATTRIB;
+            vbe_putc(screen_x, screen_y, c, &fontcolor, &backcolor);
         }
         screen_x++;
         if (NUM_COLS == screen_x){
@@ -333,11 +350,15 @@ void putc(uint8_t c) {
                 *(uint8_t *)((char*)video_mem_local + (i * 2)) = ' ';
                 *(uint8_t *)((char*)video_mem_local + (i * 2) + 1) = ATTRIB;
             }
+            vbe_rollup(0);
         } else {
             for (i = NUM_COLS * (NUM_ROWS - 1); i < NUM_ROWS * NUM_COLS; i++){
                 *(uint8_t *)(video_mem + (i * 2)) = ' ';
                 *(uint8_t *)(video_mem + (i * 2) + 1) = ATTRIB;
+                *(uint8_t *)((char*)video_mem_local + (i * 2)) = ' ';
+                *(uint8_t *)((char*)video_mem_local + (i * 2) + 1) = ATTRIB;
             }
+            vbe_rollup(1);
         }
         screen_y--;
     }
@@ -359,9 +380,15 @@ void putc(uint8_t c) {
  */
 void putk(uint8_t c)
 {
+    if (show_picture)   return;
     terminal_t* current_terminal = get_active_terminal();
+    char* video_mem_local = (char*) current_terminal->screen_buffer;
     screen_x = current_terminal->cursor_x;
     screen_y = current_terminal->cursor_y;
+    vga_color_t fontcolor;
+    fontcolor.val = TERMINAL_FONT_COLOR;
+    vga_color_t backcolor;
+    backcolor.val = TERMINAL_BACKGROUND_COLOR;
     if (c == '\n' || c == '\r')
     {
         screen_x = 0;
@@ -371,6 +398,10 @@ void putk(uint8_t c)
     {
         *(uint8_t *)(video_mem + ((NUM_COLS * screen_y + screen_x) << 1)) = c;
         *(uint8_t *)(video_mem + ((NUM_COLS * screen_y + screen_x) << 1) + 1) = ATTRIB;
+        *(uint8_t *)(video_mem_local + ((NUM_COLS * screen_y + screen_x) << 1)) = c;
+        *(uint8_t *)(video_mem_local + ((NUM_COLS * screen_y + screen_x) << 1) + 1) = ATTRIB;
+        vbe_putk(screen_x, screen_y, c, &fontcolor, &backcolor);
+        //vbe_transfer(video_mem_local, current_picture_addr(), &fontcolor, &backcolor);
         screen_x++;
         if (NUM_COLS == screen_x)
         {
@@ -391,6 +422,7 @@ void putk(uint8_t c)
             *(uint8_t *)(video_mem + (i << 1) + 1) = ATTRIB;
         }
         screen_y--;
+        vbe_rollup(1);
     }
     current_terminal->cursor_x = screen_x;
     current_terminal->cursor_y = screen_y;

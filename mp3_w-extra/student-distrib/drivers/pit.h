@@ -3,9 +3,8 @@
 #define _PIT_H
 
 #include "../kernel/schedule.h"
-/* 
-reference: https://wiki.osdev.org/PIT
-*/
+#include "vbe.h"
+
 /* Constants */
 
 // I/O Port
@@ -44,20 +43,27 @@ reference: https://wiki.osdev.org/PIT
 */
 // We need Access mode: lobyte/hibyte and Operating mode 3 (square wave)
 // i.e. 00110110 = 0x36
-#define READ_BACK_STATUS 0x36
+#define PITREAD_BACK_STATUS 0x36
 
 // Rate Settings
-#define DEFAULT_RATE 1193181    //1.193182 MHz
+#define PITDEFAULT_RATE 1193181    //1.193182 MHz
 #define TEN_MS  100 // 10 ms
 
 // pit irq number
 #define PIT_IRQ 0
 
 // Avoid Magic Number
-#define LOW_MASK    0xFF00
-#define HIGH_MASK   0xFF
-#define HIGH_SHIFT  8
+#define LOW_MASK            0xFF00
+#define HIGH_MASK           0xFF
+#define HIGH_SHIFT          8
+#define FRESH_COUNTER       6
+#define ANIMA_RATE          35  // 35 * 0.01s = 0.35s
+#define SECOND_RATE         100
+#define MINUTE_RATE         120
+#define MINUTE              60
 
+extern int animation_rate;
+extern int animation_check;
 /* Externally-visible functions */
 /* Initialize pit timer chip */
 void pit_init(void);

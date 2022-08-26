@@ -10,12 +10,12 @@
 #
 #define ASM 1
 #include "asm_linkage.h"
-.globl rtc_handler_linkage, keyboard_handler_linkage, pit_handler_linkage
+.globl rtc_handler_linkage, keyboard_handler_linkage, pit_handler_linkage, mouse_handler_linkage
 .globl system_call_linkage
 
 
 jump_table:
-.long halt, execute, read, write, open, close, getargs, vidmap, set_handler, sigreturn
+.long halt, execute, read, write, open, close, getargs, vidmap, set_handler, sigreturn, sound, nosound
 
 
 
@@ -57,6 +57,20 @@ keyboard_handler_linkage:
 pit_handler_linkage:
     pushal
     call pit_handler
+    popal
+    iret
+
+
+
+# mouse_handler_linkage
+#   Description: asm linkage for mouse_handler
+#   Input: none
+#   Output: none
+#   Notice: iret is required as it is returned from an interrupt
+#
+mouse_handler_linkage:
+    pushal
+    call mouse_handler
     popal
     iret
 

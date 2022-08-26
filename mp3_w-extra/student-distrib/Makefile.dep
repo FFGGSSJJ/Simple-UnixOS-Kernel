@@ -22,31 +22,52 @@ kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h drivers/i8259.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
-  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
   kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
   kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
-  drivers/filesystem.h drivers/rtc.h kernel/idt.h kernel/../x86_desc.h \
-  kernel/asm_linkage.h kernel/../drivers/rtc.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
+  kernel/../drivers/vbe.h drivers/filesystem.h drivers/rtc.h kernel/idt.h \
+  kernel/../x86_desc.h kernel/asm_linkage.h kernel/../drivers/rtc.h \
   kernel/../drivers/keyboard.h kernel/../drivers/pit.h \
-  kernel/../drivers/../kernel/schedule.h \
-  kernel/../drivers/../kernel/../types.h \
-  kernel/../drivers/../kernel/../lib.h kernel/../drivers/../kernel/pcb.h \
-  kernel/../drivers/../kernel/paging.h \
-  kernel/../drivers/../kernel/../x86_desc.h \
-  kernel/../drivers/../kernel/system_call.h \
-  kernel/../drivers/../kernel/../drivers/filesystem.h \
-  kernel/../drivers/../kernel/../drivers/terminal.h \
-  kernel/../drivers/../kernel/../drivers/../types.h \
-  kernel/../drivers/../kernel/../drivers/../lib.h \
-  kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
-  kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
-  kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  kernel/system_call.h kernel/pcb.h kernel/../drivers/filesystem.h \
-  kernel/paging.h drivers/keyboard.h drivers/terminal.h drivers/../lib.h \
-  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
-  drivers/../kernel/pcb.h kernel/system_call.h drivers/pit.h \
-  kernel/schedule.h
+  kernel/../drivers/mouse.h kernel/system_call.h kernel/pcb.h \
+  kernel/../drivers/filesystem.h kernel/paging.h drivers/keyboard.h \
+  drivers/terminal.h drivers/../lib.h drivers/../drivers/keyboard.h \
+  drivers/../kernel/paging.h drivers/../kernel/pcb.h drivers/vbe.h \
+  drivers/statusbar.h kernel/system_call.h drivers/pit.h \
+  kernel/schedule.h drivers/pci.h drivers/vbe.h data/desktop.h \
+  drivers/mouse.h
 lib.o: lib.c lib.h types.h drivers/terminal.h drivers/../types.h \
   drivers/../lib.h drivers/../drivers/keyboard.h \
   drivers/../drivers/i8259.h drivers/../drivers/../types.h \
@@ -72,11 +93,45 @@ lib.o: lib.c lib.h types.h drivers/terminal.h drivers/../types.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
-  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
-  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
-  drivers/../kernel/pcb.h drivers/keyboard.h kernel/pcb.h
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../drivers/vbe.h \
+  drivers/../drivers/statusbar.h drivers/../drivers/filesystem.h \
+  drivers/../kernel/paging.h drivers/../kernel/pcb.h drivers/vbe.h \
+  drivers/statusbar.h drivers/keyboard.h kernel/pcb.h drivers/vbe.h
 tests.o: tests.c tests.h x86_desc.h types.h lib.h drivers/rtc.h \
   drivers/../types.h drivers/../lib.h drivers/i8259.h drivers/terminal.h \
   drivers/../drivers/keyboard.h drivers/../drivers/i8259.h \
@@ -102,15 +157,55 @@ tests.o: tests.c tests.h x86_desc.h types.h lib.h drivers/rtc.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
-  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
-  drivers/../kernel/pcb.h kernel/paging.h drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../drivers/vbe.h \
+  drivers/../drivers/statusbar.h drivers/../drivers/filesystem.h \
+  drivers/../kernel/paging.h drivers/../kernel/pcb.h drivers/vbe.h \
+  drivers/statusbar.h kernel/paging.h drivers/keyboard.h \
   drivers/filesystem.h drivers/terminal.h
 asm_linkage.o: kernel/asm_linkage.S kernel/asm_linkage.h
 paging_asm.o: kernel/paging_asm.S
 pcb_asm.o: kernel/pcb_asm.S
 schedule_asm.o: kernel/schedule_asm.S
 system_call_asm.o: kernel/system_call_asm.S
+boot_imgs.o: data/boot_imgs.c data/boot_imgs.h data/../types.h
+boot_imgss.o: data/boot_imgss.c data/boot_imgs.h data/../types.h
+desktop.o: data/desktop.c data/desktop.h data/../lib.h data/../types.h
+icons.o: data/icons.c data/icons.h data/../types.h
+vbe_text.o: data/vbe_text.c data/vbe_text.h
 filesystem.o: drivers/filesystem.c drivers/filesystem.h \
   drivers/../types.h drivers/../multiboot.h drivers/../types.h \
   drivers/../lib.h
@@ -137,10 +232,134 @@ keyboard.o: drivers/keyboard.c drivers/keyboard.h drivers/i8259.h \
   drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
-  drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
   drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
-  drivers/../kernel/pcb.h
+  drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/vbe.h drivers/../kernel/pcb.h \
+  drivers/vbe.h drivers/statusbar.h drivers/filesystem.h
+mouse.o: drivers/mouse.c drivers/mouse.h drivers/../lib.h \
+  drivers/../types.h drivers/../types.h drivers/i8259.h drivers/vbe.h \
+  drivers/../data/vbe_text.h drivers/../kernel/pcb.h \
+  drivers/../kernel/../types.h drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/terminal.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
+  drivers/statusbar.h drivers/pit.h drivers/../kernel/schedule.h \
+  drivers/../kernel/pcb.h drivers/../kernel/paging.h \
+  drivers/../kernel/../x86_desc.h drivers/../kernel/../types.h \
+  drivers/../kernel/system_call.h drivers/../data/color.h \
+  drivers/../data/../lib.h drivers/../data/../drivers/vbe.h \
+  drivers/../data/desktop.h drivers/../data/icons.h \
+  drivers/../data/../types.h drivers/../data/boot_imgs.h
+pci.o: drivers/pci.c drivers/pci.h drivers/../lib.h drivers/../types.h \
+  drivers/../types.h drivers/vbe.h drivers/../data/vbe_text.h \
+  drivers/../kernel/pcb.h drivers/../kernel/../types.h \
+  drivers/../kernel/../lib.h drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/terminal.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
+  drivers/statusbar.h drivers/mouse.h drivers/i8259.h drivers/pit.h \
+  drivers/../kernel/schedule.h drivers/../kernel/pcb.h \
+  drivers/../kernel/paging.h drivers/../kernel/../x86_desc.h \
+  drivers/../kernel/../types.h drivers/../kernel/system_call.h \
+  drivers/../data/color.h drivers/../data/../lib.h \
+  drivers/../data/../drivers/vbe.h drivers/../data/desktop.h \
+  drivers/../data/icons.h drivers/../data/../types.h \
+  drivers/../data/boot_imgs.h
 pit.o: drivers/pit.c drivers/../lib.h drivers/../types.h \
   drivers/../types.h drivers/pit.h drivers/../kernel/schedule.h \
   drivers/../kernel/../types.h drivers/../kernel/../lib.h \
@@ -165,13 +384,33 @@ pit.o: drivers/pit.c drivers/../lib.h drivers/../types.h \
   drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
   drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/filesystem.h \
   drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
   drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
   drivers/../kernel/../drivers/terminal.h drivers/../kernel/paging.h \
   drivers/../kernel/../x86_desc.h drivers/../kernel/../types.h \
-  drivers/../kernel/system_call.h drivers/i8259.h
+  drivers/../kernel/system_call.h drivers/vbe.h drivers/i8259.h
 rtc.o: drivers/rtc.c drivers/rtc.h drivers/../types.h drivers/../lib.h \
   drivers/../types.h drivers/i8259.h drivers/terminal.h \
   drivers/../drivers/keyboard.h drivers/../drivers/i8259.h \
@@ -197,9 +436,92 @@ rtc.o: drivers/rtc.c drivers/rtc.h drivers/../types.h drivers/../lib.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
-  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
-  drivers/../kernel/pcb.h
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../drivers/vbe.h \
+  drivers/../drivers/statusbar.h drivers/../drivers/filesystem.h \
+  drivers/../kernel/paging.h drivers/../kernel/pcb.h drivers/vbe.h \
+  drivers/statusbar.h
+statusbar.o: drivers/statusbar.c drivers/statusbar.h drivers/vbe.h \
+  drivers/../lib.h drivers/../types.h drivers/../types.h \
+  drivers/../data/vbe_text.h drivers/../kernel/pcb.h \
+  drivers/../kernel/../types.h drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/terminal.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
+  drivers/mouse.h drivers/i8259.h drivers/pit.h \
+  drivers/../kernel/schedule.h drivers/../kernel/pcb.h \
+  drivers/../kernel/paging.h drivers/../kernel/../x86_desc.h \
+  drivers/../kernel/../types.h drivers/../kernel/system_call.h \
+  drivers/../data/color.h drivers/../data/../lib.h \
+  drivers/../data/../drivers/vbe.h drivers/../data/desktop.h \
+  drivers/../data/icons.h drivers/../data/../types.h \
+  drivers/../data/boot_imgs.h
 terminal.o: drivers/terminal.c drivers/terminal.h drivers/../types.h \
   drivers/../lib.h drivers/../types.h drivers/../drivers/keyboard.h \
   drivers/../drivers/i8259.h drivers/../drivers/../types.h \
@@ -225,11 +547,91 @@ terminal.o: drivers/terminal.c drivers/terminal.h drivers/../types.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
-  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
   drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
-  drivers/../drivers/../kernel/pcb.h drivers/../kernel/paging.h \
-  drivers/../kernel/pcb.h
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../drivers/../kernel/pcb.h drivers/../drivers/vbe.h \
+  drivers/../drivers/statusbar.h drivers/../drivers/filesystem.h \
+  drivers/../kernel/paging.h drivers/../kernel/pcb.h drivers/vbe.h \
+  drivers/statusbar.h
+vbe.o: drivers/vbe.c drivers/vbe.h drivers/../lib.h drivers/../types.h \
+  drivers/../types.h drivers/../data/vbe_text.h drivers/../kernel/pcb.h \
+  drivers/../kernel/../types.h drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../multiboot.h \
+  drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/i8259.h \
+  drivers/../kernel/../drivers/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../types.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../lib.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/../drivers/vbe.h \
+  drivers/../kernel/../drivers/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/../drivers/filesystem.h \
+  drivers/../kernel/../drivers/../kernel/paging.h \
+  drivers/../kernel/../drivers/../kernel/pcb.h \
+  drivers/../kernel/../drivers/vbe.h \
+  drivers/../kernel/../drivers/statusbar.h \
+  drivers/../kernel/../drivers/rtc.h drivers/../kernel/../drivers/i8259.h \
+  drivers/../kernel/../drivers/terminal.h drivers/terminal.h \
+  drivers/../drivers/keyboard.h drivers/../kernel/paging.h \
+  drivers/statusbar.h drivers/mouse.h drivers/i8259.h drivers/pit.h \
+  drivers/../kernel/schedule.h drivers/../kernel/pcb.h \
+  drivers/../kernel/paging.h drivers/../kernel/../x86_desc.h \
+  drivers/../kernel/../types.h drivers/../kernel/system_call.h \
+  drivers/../data/color.h drivers/../data/../lib.h \
+  drivers/../data/../drivers/vbe.h drivers/../data/desktop.h \
+  drivers/../data/icons.h drivers/../data/../types.h \
+  drivers/../data/boot_imgs.h
 idt.o: kernel/idt.c kernel/idt.h kernel/../x86_desc.h kernel/../types.h \
   kernel/../lib.h kernel/asm_linkage.h kernel/../drivers/rtc.h \
   kernel/../drivers/../types.h kernel/../drivers/../lib.h \
@@ -260,25 +662,49 @@ idt.o: kernel/idt.c kernel/idt.h kernel/../x86_desc.h kernel/../types.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../data/boot_imgs.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
   kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
   kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
   kernel/../drivers/keyboard.h kernel/../drivers/pit.h \
-  kernel/../drivers/../kernel/schedule.h \
-  kernel/../drivers/../kernel/../types.h \
-  kernel/../drivers/../kernel/../lib.h kernel/../drivers/../kernel/pcb.h \
-  kernel/../drivers/../kernel/paging.h \
-  kernel/../drivers/../kernel/../x86_desc.h \
-  kernel/../drivers/../kernel/system_call.h \
-  kernel/../drivers/../kernel/../drivers/filesystem.h \
-  kernel/../drivers/../kernel/../drivers/terminal.h \
-  kernel/../drivers/../kernel/../drivers/../types.h \
-  kernel/../drivers/../kernel/../drivers/../lib.h \
-  kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
-  kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
-  kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  kernel/system_call.h kernel/pcb.h kernel/../drivers/filesystem.h \
-  kernel/paging.h
+  kernel/../drivers/mouse.h kernel/system_call.h kernel/pcb.h \
+  kernel/../drivers/filesystem.h kernel/paging.h kernel/../types.h
 paging.o: kernel/paging.c kernel/paging.h kernel/../types.h \
   kernel/../lib.h kernel/../types.h kernel/../drivers/terminal.h \
   kernel/../drivers/../types.h kernel/../drivers/../lib.h \
@@ -301,10 +727,44 @@ paging.o: kernel/paging.c kernel/paging.h kernel/../types.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
-  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
-  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
   kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
-  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/rtc.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
+  kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
+  kernel/../drivers/vbe.h
 pcb.o: kernel/pcb.c kernel/pcb.h kernel/../types.h kernel/../lib.h \
   kernel/../types.h kernel/../drivers/filesystem.h \
   kernel/../drivers/../types.h kernel/../drivers/../multiboot.h \
@@ -324,8 +784,44 @@ pcb.o: kernel/pcb.c kernel/pcb.h kernel/../types.h kernel/../lib.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
   kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
   kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
   kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
   kernel/../drivers/terminal.h
 schedule.o: kernel/schedule.c kernel/schedule.h kernel/../types.h \
@@ -348,8 +844,28 @@ schedule.o: kernel/schedule.c kernel/schedule.h kernel/../types.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
   kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
   kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
   kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
   kernel/../drivers/terminal.h kernel/paging.h kernel/../x86_desc.h \
   kernel/system_call.h
@@ -373,7 +889,43 @@ system_call.o: kernel/system_call.c kernel/system_call.h kernel/../lib.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../drivers/keyboard.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
   kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/vbe_text.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/mouse.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/i8259.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/pit.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/schedule.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../x86_desc.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/system_call.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/filesystem.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/terminal.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../drivers/keyboard.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/paging.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../kernel/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/color.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../lib.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../drivers/vbe.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/desktop.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/icons.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/../types.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/../data/boot_imgs.h \
+  kernel/../drivers/../drivers/../kernel/../drivers/vbe.h \
   kernel/../drivers/../drivers/../kernel/pcb.h \
+  kernel/../drivers/../drivers/vbe.h \
+  kernel/../drivers/../drivers/statusbar.h \
+  kernel/../drivers/../drivers/filesystem.h \
   kernel/../drivers/../kernel/paging.h kernel/../drivers/../kernel/pcb.h \
+  kernel/../drivers/vbe.h kernel/../drivers/statusbar.h \
   kernel/../drivers/rtc.h kernel/../drivers/i8259.h \
   kernel/../drivers/terminal.h kernel/paging.h kernel/../x86_desc.h

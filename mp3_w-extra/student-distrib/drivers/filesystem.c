@@ -194,9 +194,43 @@ int32_t file_read(uint32_t inode_num, uint32_t position, void *buf, uint32_t len
  * return: -1 -- fail
  * side effect: none
  */
-int32_t file_write(uint32_t inode_num, void *buf, uint32_t length)
+int32_t file_write(uint32_t inode, void *buf, uint32_t length)
 {
-    return -1;
+    inode_t *inode_ptr;
+    int32_t write_end; // the offest (index) of the last byte to be copied +1
+    int32_t blk_index;
+    uint8_t *blk_ptr;
+    int32_t blk_wt_length; // length to copy inside a block
+    int32_t blk_num_total; // total number of data blocks available for an inode
+    int32_t offset; // offset of data written realatively to the whole file
+    
+    // bad input arguments
+    if (inode >= boot_blk_ptr->inode_count || buf == NULL) return -1;
+    // initialize the loop
+    inode_ptr = (inode_t *)(boot_blk_ptr + 1 + inode); // +1 to jump over the boot block
+    blk_num_total = (inode_ptr->length)/blk_size + (int32_t)(((inode_ptr->length) % blk_size) > 0);
+    write_end = length > blk_num_total*blk_size ? blk_num_total*blk_size : length;
+    offset = 0;
+
+    while (offset < write_end)
+    {
+        // update block index, block pointer
+        blk_index = (inode_ptr->data_blk_index)[offset / blk_size];
+        if (blk_index >= boot_blk_ptr->data_blk_count) return -1; // bad block index
+        blk_ptr = (uint8_t *)(boot_blk_ptr + 1 + boot_blk_ptr->inode_count + blk_index);
+
+        // compute offest inside a block and blk_wt_length (number of bytes to be written inside a block)
+        blk_wt_length = (write_end - offset) > blk_size ? blk_size : write_end - offset;
+
+        // copy the content to buf and update length copied
+        memcpy(blk_ptr, (uint8_t *)buf + offset, blk_wt_length);
+
+        // update buf pointer, and offset
+        offset += blk_wt_length;
+    }
+    // update file length
+    inode_ptr->length = write_end;
+    return write_end;
 }
 
 /**
