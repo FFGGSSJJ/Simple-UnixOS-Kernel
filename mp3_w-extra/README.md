@@ -59,7 +59,7 @@ Some files and folder are omitted.
 
 ## Environment w/ configuration
 
-> For general environment preparation, please refer to the mp0 document provided to you at the very beginning.
+> For general environment preparation, please refer to the mp0 document provided to you at the very beginning of this course.
 
 I build and test this kernel in a Ubuntu Virtural Machine with ubuntu version `Ubuntu 20.04`.
 
