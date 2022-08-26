@@ -31,13 +31,15 @@ You can also modify the QEMU configuration file to disable GDB breakpoint at the
 
 ##### Boot Animation
 
-The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency.
+The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency. I will try to upload a video here.
 
 ##### Desktop
 
 The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I suppose to design a real clock, but GUI took too much time for me.
 
 ![](../readme_img/desktop.png)
+
+
 
 ##### Terminal
 
