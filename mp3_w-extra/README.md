@@ -1,5 +1,75 @@
+### Xunil
+
+The kernel we designed is named as `Xunil`, which is just a reversion of `Linux`. 
+
+All four members in this team contribute to this kernel.
+
+### Environment w/ configuration
+
+> For general environment preparation, please refer to the mp0 document provided to you at the very beginning.
+
+I build and test this kernel in a Ubuntu Virtural Machine with ubuntu version `Ubuntu 20.04`.
+
+To make our kernel work with Graphical User Interface (GUI), you need to add PCIe feature in the QEMU configuration file. Mine is shown below:
+
+```sh
+#!/bin/sh
+"/home/fuguanshujie/Desktop/ece391/qemu/bin/qemu-system-i386" -hda "/home/fuguanshujie/Desktop/ece391/ece391_share/work/mp3_group_27/student-distrib/mp3.img" -m 256 -gdb tcp:127.0.0.1:1234 -S -name mp3 -vga std
+```
+
+
+
+### Build and Run
+
+After successfully `make install` amd `make` to compile our kernel (it supposes to work smoothly), open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. Enter `c` or `continue` to execute our kernel.
+
+You can also modify the QEMU configuration file to disable GDB breakpoint at the beginning such that you only need to double click the QEMU icon to run our kernel. 
+
+
+
+### Demo
+
+##### Boot Animation
+
+The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency.
+
+##### Desktop
+
+The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I suppose to design a real clock, but GUI took too much time for me.
+
+![](../readme_img/desktop.png)
+
+##### Terminal
+
+Use the mouse to click the terminal button (the mouse is a little bit hard to use, do not use your touch pad), you enter into the terminal interface. The terminal is converted from text mode into graphical mode. 
+
+![](../readme_img/terminal.png)
+
+
+
+##### Functionality
+
+All functionalities required by the MP3 are realized. I will just show something here.
+
+- The `fish` command:
+
+![](../readme_img/fish.png)
+
+- Another terminal and `ls` command:
+
+![](../readme_img/terminal2.png)
+
+- A text editor `svim`. We implemented a simple version `vim` and we call it `svim`. It can be used to modify the file, for instance, `frame0.txt`:
+
+![](../readme_img/svim.png)
+
+That's basically it. For other features or commands like `scheduler`, `cmd history`, `tab func` and etc., I will not show them here.
+
+
+
 ACADEMIC INTEGRITY
 -----
+
 Please review the University of Illinois Student Code before starting,
 particularly all subsections of Article 1, Part 4 Academic Integrity and Procedure [here](http://studentcode.illinois.edu/article1_part4_1-401.html).
 
