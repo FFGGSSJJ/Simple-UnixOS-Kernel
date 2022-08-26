@@ -15,7 +15,7 @@ Here shows the file tree of our main project folder `student-distrib` in a level
 ├── Makefile
 ├── Makefile.dep
 ├── boot.S
-├── data										# Place the necessary data file for boot animation, icon and desktop.
+├── data	# Place the necessary data file for boot animation, icon and desktop.
 │   ├── boot_imgs.c
 │   ├── boot_imgs.h
 │   ├── boot_imgss.c
@@ -28,7 +28,7 @@ Here shows the file tree of our main project folder `student-distrib` in a level
 │   └── vbe_text.h
 ├── debug.h
 ├── debug.sh
-├── drivers									# Place the driver codes like keyboard/mouse driver, rtc/pit driver, PCIe scanner as well as the VGA driver (the so called VBE)
+├── drivers		# Place the driver codes like keyboard/mouse driver, rtc/pit driver, PCIe scanner as well as the VGA driver (the so called VBE)
 │   ├── filesystem.c
 │   ├── filesystem.h
 │   ├── i8259.c
@@ -50,7 +50,7 @@ Here shows the file tree of our main project folder `student-distrib` in a level
 │   ├── vbe.c
 │   └── vbe.h
 ├── filesys_img
-├── kernel									# Place the kernel feature codes like paging and scheduler.
+├── kernel	# Place the kernel feature codes like paging and scheduler.
 │   ├── asm_linkage.S
 │   ├── asm_linkage.h
 │   ├── idt.c
