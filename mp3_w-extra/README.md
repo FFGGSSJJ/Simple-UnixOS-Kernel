@@ -150,7 +150,6 @@ For other features or commands like `scheduler`, `cmd history`, `tab func` and e
 > That's basically it. 
 
 ## ACADEMIC INTEGRITY<a name="acad"></a>
------
 
 Please review the University of Illinois Student Code before starting,
 particularly all subsections of Article 1, Part 4 Academic Integrity and Procedure [here](http://studentcode.illinois.edu/article1_part4_1-401.html).
