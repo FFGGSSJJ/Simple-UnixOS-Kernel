@@ -1,10 +1,25 @@
-## Xunil
+# Xunil
 
 The kernel we designed is named as `Xunil`, which is just a reversion of `Linux`. 
 
 All four members in the team contribute to this kernel.
 
-## Project Folder Structure
+# Table of contents
+1. [Project Folder Structure](#structure)
+2. [Environment w/ configuration](#env)
+3. [Build and Run](#build)
+4. [Demo](#demo)
+    1. [Boot Animation](#animation)
+    2. [Desktop](#desk)
+    3. [Terminal](#term)
+    4. [Partial Functionality](#func)
+5. [ACADEMIC INTEGRITY](#acad)
+
+
+
+
+
+## Project Folder Structure<a name="structure"></a>
 
 Here shows the file tree of our main project folder `student-distrib` in a level of 2.
 
@@ -57,7 +72,7 @@ student_distrib
 
 
 
-## Environment w/ configuration
+## Environment w/ configuration<a name="env"></a>
 
 > For general environment preparation, please refer to the **mp0 document** provided to you at the very beginning of this course.
 
@@ -72,7 +87,7 @@ To make our kernel work with Graphical User Interface (GUI), you need to add sta
 
 > You should do the same thing if you try to utilize **any PCIe devices** including NIC and sound card. 
 
-## Build and Run
+## Build and Run<a name="build"></a>
 
 After successfully `make install` amd `make` to compile our kernel (it supposes to work smoothly), open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. Enter `c` or `continue` to execute our kernel.
 
@@ -80,9 +95,9 @@ You can also modify the QEMU configuration file to disable GDB breakpoint at the
 
 
 
-## Demo
+## Demo<a name="demo"></a>
 
-### Boot Animation
+### Boot Animation<a name="animation"></a>
 
 The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency. 
 
@@ -90,7 +105,7 @@ The following `gif` is converted from recorded video `mov`, which is slower than
 
 ![](../readme_img/animation.gif)
 
-### Desktop
+### Desktop<a name="desk"></a>
 
 The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I planned to design a real clock, but GUI took too much time from me.
 
@@ -98,7 +113,7 @@ The desktop contains a backgroud, a status bar with a terminal icon on the left-
 
 
 
-### Terminal
+### Terminal<a name="term"></a>
 
 Use the mouse cursor to click the terminal button (the mouse is a little bit hard to use, do not use your touch pad), you enter into the terminal interface. The terminal is converted from text mode into graphical mode. 
 
@@ -106,7 +121,7 @@ Use the mouse cursor to click the terminal button (the mouse is a little bit har
 
 
 
-### Partial Functionality
+### Partial Functionality<a name="func"></a>
 
 All functionalities required by the MP3 are realized. I will just show something here.
 
@@ -134,7 +149,7 @@ For other features or commands like `scheduler`, `cmd history`, `tab func` and e
 >
 > That's basically it. 
 
-ACADEMIC INTEGRITY
+##ACADEMIC INTEGRITY<a name="acad"></a>
 -----
 
 Please review the University of Illinois Student Code before starting,
