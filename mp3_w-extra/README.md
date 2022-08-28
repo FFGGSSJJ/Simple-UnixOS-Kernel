@@ -2,7 +2,7 @@
 
 The kernel we designed is named as `Xunil`, which is just a reversion of `Linux`. 
 
-All four members in this team contribute to this kernel.
+All four members in the team contribute to this kernel.
 
 ## Project Folder Structure
 
@@ -11,7 +11,7 @@ Here shows the file tree of our main project folder `student-distrib` in a level
 Some files and folder are omitted.
 
 ```sh
-.
+student_distrib
 ├── data	# Place the necessary data file for boot animation, icon and desktop.
 │   ├── boot_imgs.c
 │   ├── ......
@@ -59,7 +59,7 @@ Some files and folder are omitted.
 
 ## Environment w/ configuration
 
-> For general environment preparation, please refer to the mp0 document provided to you at the very beginning of this course.
+> For general environment preparation, please refer to the **mp0 document** provided to you at the very beginning of this course.
 
 I build and test this kernel in a Ubuntu Virtural Machine with ubuntu version `Ubuntu 20.04`.
 
@@ -70,7 +70,7 @@ To make our kernel work with Graphical User Interface (GUI), you need to add sta
 "/home/fuguanshujie/Desktop/ece391/qemu/bin/qemu-system-i386" -hda "/home/fuguanshujie/Desktop/ece391/ece391_share/work/mp3_group_27/student-distrib/mp3.img" -m 256 -gdb tcp:127.0.0.1:1234 -S -name mp3 -vga std
 ```
 
-
+> You should do the same thing if you try to utilize **any PCIe devices** including NIC and sound card. 
 
 ## Build and Run
 
