@@ -84,7 +84,11 @@ You can also modify the QEMU configuration file to disable GDB breakpoint at the
 
 ### Boot Animation
 
-The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency. I will try to upload a video here.
+The boot animation is designed with a state machine and last for 10 seconds. The frame rate is based on pit frequency. 
+
+The following `gif` is converted from recorded video `mov`, which is slower than it supposes to be. You can also see the mouse cursor implemented in our kernel. 
+
+![](../readme_img/animation.gif)
 
 ### Desktop
 
