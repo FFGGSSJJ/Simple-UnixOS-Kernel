@@ -96,10 +96,9 @@ To make our kernel work with Graphical User Interface (GUI), you need to add sta
 
 - relate our kernel img to your QEMU emulator by modify the configuration file.
 - open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. 
+  - You can also modify the QEMU configuration file to disable GDB connection by deleting `-gdb tcp:127.0.0.1:1234` such that you only need to double click the QEMU icon to run our kernel. But I do not recommend to do so.
 
 - Enter `c` or `continue` to execute our kernel.
-
-You can also modify the QEMU configuration file to disable GDB breakpoint at the beginning such that you only need to double click the QEMU icon to run our kernel. 
 
 
 
