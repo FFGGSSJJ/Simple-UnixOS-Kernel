@@ -89,7 +89,13 @@ To make our kernel work with Graphical User Interface (GUI), you need to add sta
 
 ## Build and Run<a name="build"></a>
 
-After successfully `make install` amd `make` to compile our kernel (it supposes to work smoothly), open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. Enter `c` or `continue` to execute our kernel.
+- `make install` amd `make` to compile our kernel 
+  - it supposes to work smoothly, but actually you do not need to do this step since we have uploaded a compiled kernel img: `./student_distrib/mp3.img`.
+
+- relate our kernel img to your QEMU emulator by modify the configuration filke.
+- open GDB by `gdb vmlinux` and type `target remote 10.0.2.2:1234` to connect to our kernel image. 
+
+- Enter `c` or `continue` to execute our kernel.
 
 You can also modify the QEMU configuration file to disable GDB breakpoint at the beginning such that you only need to double click the QEMU icon to run our kernel. 
 
