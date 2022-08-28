@@ -8,6 +8,8 @@
 
 Hi, folks. This is the repo for <u>*UIUC ECE391 Operating System*</u>, where we stored our codes for all 3 MPs and 2 PSs. 
 
+Details of the OS kernel implemented for MP3 can be found in [mp3_w-extra](https://github.com/FFGGSSJJ/ECE391-gf9/tree/main/mp3_w-extra) folder.
+
 ### MyTeam
 
 - Guanshujie Fu
