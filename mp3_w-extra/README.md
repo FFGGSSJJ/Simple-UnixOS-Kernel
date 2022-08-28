@@ -149,7 +149,7 @@ For other features or commands like `scheduler`, `cmd history`, `tab func` and e
 >
 > That's basically it. 
 
-##ACADEMIC INTEGRITY<a name="acad"></a>
+## ACADEMIC INTEGRITY<a name="acad"></a>
 -----
 
 Please review the University of Illinois Student Code before starting,
