@@ -92,7 +92,7 @@ The following `gif` is converted from recorded video `mov`, which is slower than
 
 ### Desktop
 
-The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I suppose to design a real clock, but GUI took too much time for me.
+The desktop contains a backgroud, a status bar with a terminal icon on the left-up corner and a timer on the right-up corner. I planned to design a real clock, but GUI took too much time from me.
 
 ![](../readme_img/desktop.png)
 
@@ -100,13 +100,13 @@ The desktop contains a backgroud, a status bar with a terminal icon on the left-
 
 ### Terminal
 
-Use the mouse to click the terminal button (the mouse is a little bit hard to use, do not use your touch pad), you enter into the terminal interface. The terminal is converted from text mode into graphical mode. 
+Use the mouse cursor to click the terminal button (the mouse is a little bit hard to use, do not use your touch pad), you enter into the terminal interface. The terminal is converted from text mode into graphical mode. 
 
 ![](../readme_img/terminal.png)
 
 
 
-### Functionality
+### Partial Functionality
 
 All functionalities required by the MP3 are realized. I will just show something here.
 
@@ -118,13 +118,21 @@ All functionalities required by the MP3 are realized. I will just show something
 
 ![](../readme_img/terminal2.png)
 
-- A text editor `svim`. We implemented a simple version `vim` and we call it `svim`. It can be used to modify the file, for instance, `frame0.txt`:
+- A text editor `svim`. We implemented a simple version `vim` and hence we call it `svim`. It can be used to modify the file and save it, for instance, `frame0.txt`:
 
 ![](../readme_img/svim.png)
 
-That's basically it. For other features or commands like `scheduler`, `cmd history`, `tab func` and etc., I will not show them here.
+For other features or commands like `scheduler`, `cmd history`, `tab func` and etc., I will not show them here.
 
-
+> **Write in the end:**
+>
+> This project took a great amount of time. We added detailed comments in our code and I also added reference to any other code or documents we refered to.
+>
+> The project actually did not meet my expectation and the extra credits we earned for this project was around 4 or 5 out of 10 according to a TA in this course. This can be a good reference if you are planning your work or try to estimate your points.
+>
+> Anyway, if you find any problem in our code (there should have many undiscovered bugs) or have any question towards our code, please feel free to contact. I will see if I can help. 
+>
+> That's basically it. 
 
 ACADEMIC INTEGRITY
 -----
