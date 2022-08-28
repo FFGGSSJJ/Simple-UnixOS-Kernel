@@ -76,7 +76,9 @@ student_distrib
 
 > For general environment preparation, please refer to the **mp0 document** provided to you at the very beginning of this course.
 
-I build and test this kernel in a Ubuntu Virtural Machine with ubuntu version `Ubuntu 20.04`.
+I build and test this kernel in a Ubuntu Virtural Machine with version `Ubuntu 20.04`.
+
+A `QEMU emulator` provided by the course will be needed to execute our kernel. Please refer to the course materials for the version and other details.
 
 To make our kernel work with Graphical User Interface (GUI), you need to add standard VGA PCIe feature `-vga std` in the QEMU configuration file. Mine is shown below:
 
