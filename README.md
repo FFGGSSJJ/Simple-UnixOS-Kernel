@@ -19,7 +19,7 @@ Details of the OS kernel implemented for MP3 can be found in [mp3_w-extra](https
 
 Thank you all for the extraordinary works your guys have done. 
 
-I distinguish two mp3 project folders for your convenience when refer to the code as some extra credit codes may change the original functionality.
+I distinguish **two mp3 project** folders for your convenience when refer to the code as some extra credit codes may change the original functionality.
 
 That's it.
 
